@@ -1,0 +1,98 @@
+#app{
+	overflow-y: scroll;
+	& > .board{
+		& > .columns{
+			& > .column{
+				width: 300px;
+				max-height: 400px;
+				float: left;
+				
+				& > .title{
+					
+				}
+
+				& > .tasks{
+					& > .task{
+						
+					}
+				}
+
+				& > .btn_add_task{
+					
+				}
+
+				&.empty {
+					> * {
+						display: none;
+					} 
+					> .column_editor{
+						display: block;
+					}
+				}
+				&.edit {
+					> .title{
+						display: none;
+					}
+					> .column_editor{
+						display: block;
+					}
+				}
+			}
+		}
+
+		& > .btn_add_column{
+			width: 300px;
+			float: left;
+		}
+
+		& .column_editor{
+
+			> input{
+				
+			}
+			> .btn{
+				
+			}
+			> .btn_save_column{
+				
+			}
+			> .btn_cancel_column{
+				
+			}
+		}
+
+		& > .column_editor{
+			display: none;
+		}
+
+		& .task_editor{
+
+			> textarea{
+				
+			}
+			> .btn{
+				
+			}
+			> .btn_save_column{
+				
+			}
+			> .btn_cancel_column{
+				
+			}
+		}
+
+		& > .task_editor{
+			display: none;
+		}
+
+
+		&.adding_column > .btn_add_column{
+			display: none;
+		}
+
+		&::after{
+			content: ' ';
+			clear: both;
+		}
+	}
+}
