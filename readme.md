@@ -9,3 +9,4 @@ So what we've got here.
 * User data is stored at local storage.
 * Project is based on Backbone framework and assembled with Yeoman scaffolding (backbone generator), Grunt tasks and Bower components.
 * To run project simply open 'dist/index.html' or run 'grunt serve'
+* Localstorage is unavailable in IE when run from local file.
