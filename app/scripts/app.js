@@ -32,7 +32,15 @@ define([
 
 	board.$el.appendTo('#app');
 
-	if (typeof(localStorage) !== undefined) {
+	var defaultData = {
+		columns: [
+			{title: 'To Do'},
+			{title: 'Doing'},
+			{title: 'Done'}
+		]
+	};
+
+	if (Modernizr.localstorage) {
 		// Code for localStorage/sessionStorage.
 		var data = localStorage.getItem('board');
 		if (data) {
@@ -41,16 +49,8 @@ define([
 			});
 			data = JSON.parse(data);
 		}else{
-			data = {
-				columns: [
-					{title: 'To Do'},
-					{title: 'Doing'},
-					{title: 'Done'}
-				]
-			};
+			data = defaultData;
 		}
-		board.model.fromJSON(data);
-		board.resizeBoard();
 
 		setInterval(function() {
 			if (modified) {
@@ -66,8 +66,13 @@ define([
 
 	} else {
 		// Sorry! No Web Storage support..
+		data = defaultData;
 		console.info('no localStorage support');
 
 	}
+
+	board.model.fromJSON(data);
+	board.resizeBoard();
+
 
 });
