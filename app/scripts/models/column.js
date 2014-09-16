@@ -10,7 +10,13 @@ define([
     var ColumnModel = Backbone.Model.extend({
         url: '',
 
+        nextId: null,
+
+        prevId: null,
+
         tasks: null,
+
+        boardId: null,
 
         initialize: function() {
             this.tasks = new TaskCollection();
@@ -32,6 +38,21 @@ define([
         isEmpty: function(){
             return !this.get('title') && !this.tasks.size();
         },
+
+        toJSON: function(){
+            var res = $.extend({}, this.attributes);
+            res.tasks = this.tasks.toJSON();
+            return res;
+        },
+
+        fromJSON: function(json){
+            this.tasks.set(json.tasks);
+            this.tasks.each(function(task){
+                task.columnId = this.cid;
+                task.boardId = this.boardId;
+            }, this);
+            this.set(_.omit(json, 'tasks'));
+        }
 
     });
 

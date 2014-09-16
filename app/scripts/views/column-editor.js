@@ -22,7 +22,12 @@ define([
             'click .btn_cancel_column': 'cancelColumnClicked'
         },
 
-        initialize: function () {
+        anchor: null,
+
+        initialize: function (options) {
+            console.dir({'ColumnEditorView.initialize': options});
+            this.anchor = $('#app');
+            this.backup();
         },
 
         setModel: function(model) {
@@ -48,6 +53,10 @@ define([
             return !this.model || this.model.isEmpty();
         },
 
+        backup: function(){
+            this.anchor.append(this.el);
+        },
+
         validateForm: function(){
             var val = this.$('.input_title').val();
             val.replace(/(^\s+)|(\s+$)/g, '');
@@ -58,17 +67,21 @@ define([
 
         saveColumnClicked: function(){
             if(this.validateForm()){
-                this.$el.trigger('column.resolved', this.model);
-                this.$el.trigger('column.saved', this.model);
+                this.backup();
                 this.model.set('title', this.$('.input_title').val());
+                this.model.trigger('released');
+                // this.$el.trigger('column.saved', this.model);
             }
         },
 
         cancelColumnClicked: function(){
-            if(this.isEmpty()){
-                this.$el.trigger('column.deleted', this.model);
+            this.backup();
+            if(this.model){
+                this.model.trigger('released');
+                if(this.isEmpty()){
+                    this.model.trigger('deleted');
+                }
             }
-            this.$el.trigger('column.resolved', this.model);
 
         }
 

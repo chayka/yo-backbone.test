@@ -3,12 +3,14 @@
 define([
     'underscore',
     'backbone',
-    'models/task'
-], function (_, Backbone, TaskModel) {
+    'models/task',
+    'collections/double-linked-list'
+], function (_, Backbone, TaskModel, DoubleLinkedList) {
     'use strict';
 
-    var TaskCollection = Backbone.Collection.extend({
-        model: TaskModel
+    var TaskCollection = DoubleLinkedList.extend({
+        model: TaskModel,
+
     });
 
     return TaskCollection;

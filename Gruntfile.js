@@ -332,6 +332,7 @@ module.exports = function (grunt) {
                 'jst',
                 'compass',
                 'less',
+                'jshint',
                 'connect:test',
                 'mocha',
             ];

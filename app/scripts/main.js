@@ -12,11 +12,12 @@ require.config({
         // }
     },
     paths: {
-        jquery: '../bower_components/jquery/dist/jquery',
-        backbone: '../bower_components/backbone/backbone',
-        underscore: '../bower_components/lodash/dist/lodash',
-        bootstrap: '../bower_components/sass-bootstrap/dist/js/bootstrap',
-        scroolly: '../bower_components/jquery.scroolly/src/jquery.scroolly'
+        'jquery': '../bower_components/jquery/dist/jquery',
+        'jquery-ui': '../bower_components/jquery-ui',
+        'backbone': '../bower_components/backbone/backbone',
+        'underscore': '../bower_components/lodash/dist/lodash',
+        'bootstrap': '../bower_components/sass-bootstrap/dist/js/bootstrap',
+        'scroolly': '../bower_components/jquery.scroolly/src/jquery.scroolly'
     }
 });
 

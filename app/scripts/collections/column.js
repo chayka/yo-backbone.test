@@ -3,11 +3,12 @@
 define([
     'underscore',
     'backbone',
-    'models/column'
-], function (_, Backbone, ColumnModel) {
+    'models/column',
+    'collections/double-linked-list'
+], function (_, Backbone, ColumnModel, DoubleLinkedList) {
     'use strict';
 
-    var ColumnCollection = Backbone.Collection.extend({
+    var ColumnCollection = DoubleLinkedList.extend({
         model: ColumnModel
     });
 

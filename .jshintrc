@@ -20,8 +20,8 @@
     "smarttabs": true,
     "jquery": true,
     "globals": {
-        "YoBackbone": true,
-        "yobackbone": true,
+        "YandexTest": true,
+        "yandextest": true,
         "_": false,
         "Backbone": false,
         "JST": false,

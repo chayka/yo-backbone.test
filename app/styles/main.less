@@ -1,24 +1,112 @@
+
+@color-gray: #ccc;
+
 #app{
 	overflow-y: scroll;
+	margin: 30px auto;
+	
+	input, button{
+		margin: 0;
+		vertical-align: top;
+	}
+
+	input{
+		height: 30px;
+		-webkit-border-radius: 3px;
+		        border-radius: 3px;
+	}
+
 	& > .board{
 		& > .columns{
+			float: left;
+			
 			& > .column{
+				position: relative;
 				width: 300px;
+				min-height: 82px;
 				max-height: 400px;
+				margin-right: 10px;
 				float: left;
+				background-color: @color-gray;
+				padding: 10px;
+				border-radius: 4px;
 				
 				& > .title{
-					
+					font-size: 15px;
+					font-weight: bold;
+					padding: 4px 30px 0 0;
+					min-height: 30px;
+					margin-bottom: 10px;
+				}
+
+				& > .btn_delete_column{
+					display: none;
+					position: absolute;
+					top: 10px;
+					right: 10px;
+				}
+
+				&:hover > .btn_delete_column{
+					display: block;
 				}
 
 				& > .tasks{
+					min-height: 10px;
+					margin-top: -10px;
+					padding-top: 10px;
 					& > .task{
+						position: relative;
+						background-color: white;
+						border-radius: 4px;
+						margin-bottom: 10px;
+						padding: 5px;
+						min-height: 32px;
+						box-shadow: 1px 1px 1px -1px black;
 						
+						// &:last-of-type{
+						// 	margin-bottom: 0;
+						// }
+						
+						.content{
+							padding-right: 30px;
+							white-space: pre-wrap;
+						}
+
+						.btn_delete{
+							display: none;
+							position: absolute;
+							top: 5px;
+							right: 5px;
+						}
+
+						&:hover{
+							.btn_delete{
+								display: block;
+							}
+						}
+					}
+
+					& > .task.ui-sortable-helper{
+						transform: rotate(2deg);
+					}
+
+					& > .placeholder{
+						background-color: white;
+						border-radius: 4px;
+						margin-bottom: 10px;
+						padding: 5px;
+						min-height: 32px;
+						box-shadow: 1px 1px 1px -1px black;
+						opacity: .3;
 					}
 				}
 
-				& > .btn_add_task{
-					
+				& > .btn{
+					float: right;
+				}
+
+				& > .btn_json{
+					display: none;
 				}
 
 				&.empty {
@@ -29,62 +117,51 @@
 						display: block;
 					}
 				}
+
 				&.edit {
 					> .title{
+						display: none;
+					}
+					> .btn_delete_column{
 						display: none;
 					}
 					> .column_editor{
 						display: block;
 					}
 				}
+				
+				&.adding_task {
+					padding-bottom: 0;
+					> .btn{
+						display: none;
+					}
+
+				}
+
+			}
+
+			& > .column.ui-sortable-helper{
+				transform: rotate(2deg);
+			}
+
+			& > .placeholder{
+				position: relative;
+				width: 300px;
+				min-height: 82px;
+				max-height: 400px;
+				margin-right: 10px;
+				float: left;
+				background-color: @color-gray;
+				padding: 10px;
+				border-radius: 4px;
+				opacity: .3;
 			}
 		}
 
 		& > .btn_add_column{
-			width: 300px;
+			// width: 300px;
 			float: left;
 		}
-
-		& .column_editor{
-
-			> input{
-				
-			}
-			> .btn{
-				
-			}
-			> .btn_save_column{
-				
-			}
-			> .btn_cancel_column{
-				
-			}
-		}
-
-		& > .column_editor{
-			display: none;
-		}
-
-		& .task_editor{
-
-			> textarea{
-				
-			}
-			> .btn{
-				
-			}
-			> .btn_save_column{
-				
-			}
-			> .btn_cancel_column{
-				
-			}
-		}
-
-		& > .task_editor{
-			display: none;
-		}
-
 
 		&.adding_column > .btn_add_column{
 			display: none;
@@ -95,4 +172,86 @@
 			clear: both;
 		}
 	}
+
+	& .column_editor{
+		margin-bottom: 10px;
+		position: relative;
+		> input{
+			width: 190px;
+			font-size: 15px;
+			font-weight: bold;
+			padding: 0 3px;
+
+			background-color: white;
+			// border-radius: 4px;
+			border: none;
+			// margin-bottom: 10px;
+			// padding: 5px 35px 5px 5px;
+			// min-height: 32px;
+			box-shadow: 1px 1px 1px -1px black;
+		}
+
+		> .btns{
+			position: absolute;
+			top: 0;
+			right: 0;
+			
+			> .btn{
+				
+			}
+			> .btn_save_column{
+				
+			}
+			> .btn_cancel_column{
+				
+			}
+		}
+	}
+
+	& > .column_editor{
+		display: none;
+	}
+
+	& .task_editor{
+		margin-bottom: 10px;
+		> textarea{
+			resize: none;
+			width: 100%;
+			height: 32px;
+			overflow: hidden;
+			
+			background-color: white;
+			border-radius: 4px;
+			border: none;
+			margin-bottom: 10px;
+			padding: 5px 35px 5px 5px;
+			min-height: 32px;
+			box-shadow: 1px 1px 1px -1px black;
+		}
+		> .btns{
+			text-align: right;
+			> .btn{
+				
+			}
+			> .btn_save_column{
+				
+			}
+			> .btn_cancel_column{
+				
+			}
+			
+		}
+	}
+
+	& > .task_editor{
+		display: none;
+	}
+
+
+
 }
+
+html, body{
+	background-color: rgb(35, 113, 159) !important;
+}
+
