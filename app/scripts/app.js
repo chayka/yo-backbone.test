@@ -1,11 +1,11 @@
 'use strict';
 define([
-	'jquery', 'backbone', 'underscore',
+	'jquery', 'backbone', 'underscore', 'modernizr',
 	// 'models/column', 'collections/column',
 	// 'models/task', 'collections/task',
 	'models/board', 'views/board'
 ], function(
-	$, Backbone, _,
+	$, Backbone, _, Modernizr,
 	// ColumnModel, ColumnCollection,
 	// TaskModel, TaskCollection,
 	BoardModel, BoardView
@@ -38,11 +38,12 @@ define([
 			{title: 'Doing'},
 			{title: 'Done'}
 		]
-	};
+	}, data = null;
+
 
 	if (Modernizr.localstorage) {
 		// Code for localStorage/sessionStorage.
-		var data = localStorage.getItem('board');
+		data = localStorage.getItem('board');
 		if (data) {
 			console.dir({
 				data: data
